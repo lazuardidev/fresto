@@ -1,4 +1,4 @@
-# flutter_application_1
+# fresto
 
 A new Flutter project.
 
