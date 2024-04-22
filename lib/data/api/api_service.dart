@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
 import '../model/restaurant_detail_model.dart';
 import '../model/restaurant_list_model.dart';
 
