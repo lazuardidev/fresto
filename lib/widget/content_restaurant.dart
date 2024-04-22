@@ -9,7 +9,6 @@ import '../data/model/restaurant_list_model.dart';
 import '../provider/database_provider.dart';
 import '../provider/restaurant_detail_provider.dart';
 
-import 'bottom_sheet_review.dart';
 import 'card_menu.dart';
 
 class ContentRestaurant extends StatelessWidget {
@@ -33,7 +32,6 @@ class ContentRestaurant extends StatelessWidget {
           future: providerFavorite.isFavorited(restaurant.id),
           builder: (_, snapshot) {
             final isFavorited = snapshot.data ?? false;
-
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,10 +44,7 @@ class ContentRestaurant extends StatelessWidget {
                         Container(
                           height: heightImage,
                           width: widthImage,
-                          margin: const EdgeInsets.only(
-                              left: 12, right: 12, top: 12),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
                             image: DecorationImage(
                               image: NetworkImage(
                                 'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
@@ -57,55 +52,6 @@ class ContentRestaurant extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                        Positioned(
-                          right: widthImage - (widthImage - 28),
-                          bottom: heightImage - (heightImage - 16),
-                          child: isFavorited
-                              ? FloatingActionButton(
-                                  onPressed: () {
-                                    providerFavorite
-                                        .removeFavorite(restaurant.id);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        duration: Duration(seconds: 1),
-                                        content: Text(
-                                          'Dihapuskan dari favorit',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: const Icon(
-                                    Icons.favorite,
-                                    size: 28,
-                                  ),
-                                )
-                              : FloatingActionButton(
-                                  onPressed: () {
-                                    providerFavorite.addFavorite(
-                                      Restaurant(
-                                        id: restaurant.id,
-                                        name: restaurant.name,
-                                        description: restaurant.description,
-                                        city: restaurant.city,
-                                        pictureId: restaurant.pictureId,
-                                        rating: restaurant.rating,
-                                      ),
-                                    );
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        duration: Duration(seconds: 1),
-                                        content: Text(
-                                          'Ditambahkan ke favorit',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: const Icon(
-                                    Icons.favorite_border,
-                                    size: 28,
-                                  ),
-                                ),
                         ),
                       ],
                     ),
@@ -147,65 +93,81 @@ class ContentRestaurant extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '${restaurant.rating}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      RatingBarIndicator(
+                                        rating: restaurant.rating,
+                                        itemBuilder: (context, index) =>
+                                            const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        itemSize: 18,
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '${restaurant.rating}',
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    RatingBarIndicator(
-                                      rating: restaurant.rating,
-                                      itemBuilder: (context, index) =>
-                                          const Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                      ),
-                                      itemSize: 18,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 4),
-                                GestureDetector(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      backgroundColor: Colors.white,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(18),
-                                          topRight: Radius.circular(18),
-                                        ),
-                                      ),
-                                      builder: (context) {
-                                        return BottomSheetReview(
-                                          provider: provider,
-                                          restaurant: restaurant,
+                            Container(
+                              child: isFavorited
+                                  ? FloatingActionButton(
+                                      onPressed: () {
+                                        providerFavorite
+                                            .removeFavorite(restaurant.id);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            duration: Duration(seconds: 1),
+                                            content: Text(
+                                              'Dihapuskan dari favorit',
+                                            ),
+                                          ),
                                         );
                                       },
-                                    );
-                                  },
-                                  child: Text(
-                                    'Lihat Review',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            color: primaryColor,
-                                            decoration:
-                                                TextDecoration.underline),
-                                  ),
-                                ),
-                              ],
+                                      child: const Icon(
+                                        Icons.favorite,
+                                        size: 28,
+                                      ),
+                                    )
+                                  : FloatingActionButton(
+                                      onPressed: () {
+                                        providerFavorite.addFavorite(
+                                          Restaurant(
+                                            id: restaurant.id,
+                                            name: restaurant.name,
+                                            description: restaurant.description,
+                                            city: restaurant.city,
+                                            pictureId: restaurant.pictureId,
+                                            rating: restaurant.rating,
+                                          ),
+                                        );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            duration: Duration(seconds: 1),
+                                            content: Text(
+                                              'Ditambahkan ke favorit',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        Icons.favorite_border,
+                                        size: 28,
+                                      ),
+                                    ),
                             ),
                           ],
                         ),
@@ -226,7 +188,7 @@ class ContentRestaurant extends StatelessWidget {
                                   horizontal: 24,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: Colors.orange,
                                   borderRadius: BorderRadius.circular(18),
                                 ),
                                 child: Center(
@@ -299,6 +261,52 @@ class ContentRestaurant extends StatelessWidget {
                             }).toList(),
                           ),
                         ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Review :',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 4),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: restaurant.customerReviews.length,
+                            itemBuilder: (context, index) {
+                              var review = restaurant.customerReviews[index];
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ListTile(
+                                    leading: const CircleAvatar(
+                                      backgroundColor: primaryColor,
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    title: Text(review.name),
+                                    subtitle: Text(review.date),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(72, 0, 0, 8),
+                                    child: Text(
+                                      review.review,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  const Divider(
+                                    height: 4,
+                                    thickness: 2,
+                                  ),
+                                ],
+                              );
+                            }),
                       ],
                     ),
                   ),

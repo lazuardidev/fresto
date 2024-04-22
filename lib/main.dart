@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Cari Resto',
+        title: 'Fresto',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,

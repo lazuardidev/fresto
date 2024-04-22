@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-
 import '../utils/background_service.dart';
 import '../utils/date_time_helper.dart';
 
@@ -13,7 +11,7 @@ class SchedulingProvider extends ChangeNotifier {
     _isScheduled = value;
 
     if (_isScheduled) {
-      debugPrint('Scheduling Reminder Activated');
+      debugPrint('Scheduling Activated');
       notifyListeners();
 
       return AndroidAlarmManager.periodic(
@@ -25,7 +23,7 @@ class SchedulingProvider extends ChangeNotifier {
         wakeup: true,
       );
     } else {
-      debugPrint('Scheduling News Canceled');
+      debugPrint('Scheduling Canceled');
       notifyListeners();
 
       return await AndroidAlarmManager.cancel(1);
