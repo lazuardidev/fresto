@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import '../common/styles.dart';
+import 'package:fresto/common/state_enum.dart';
+import 'package:fresto/provider/restaurant_list_provider.dart';
+import 'package:fresto/widget/card_restaurant.dart';
+import 'package:fresto/widget/loading.dart';
+import 'package:fresto/widget/text_message.dart';
+import 'package:provider/provider.dart';
 import '../utils/notification_helper.dart';
 import 'restaurant_detail_page.dart';
 import 'restaurant_favorites_page.dart';
-import 'restaurant_list_page.dart';
 import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,36 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _bottonNavIndex = 0;
-
   final NotificationHelper _notificationHelper = NotificationHelper();
-
-  final List<BottomNavigationBarItem> _bottomNavBarItems = const [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.restaurant_menu),
-      label: 'Restaurant',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.favorite),
-      label: 'Favorite',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Setting',
-    ),
-  ];
-
-  final List<Widget> _listWidget = [
-    const RestaurantListPage(),
-    const RestaurantFavoritesPage(),
-    const SettingPage(),
-  ];
-
-  void _onBottomNavTapped(int index) {
-    setState(() {
-      _bottonNavIndex = index;
-    });
-  }
 
   @override
   void initState() {
@@ -57,13 +32,86 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _listWidget[_bottonNavIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: secondaryColor,
-        currentIndex: _bottonNavIndex,
-        items: _bottomNavBarItems,
-        onTap: _onBottomNavTapped,
+      appBar: AppBar(title: const Text('Fresto')),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/logo/logo.png'),
+              ),
+              accountName: Text('Fresto'),
+              accountEmail: Text('fresto@restaurant.com'),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.restaurant_menu,
+                color: Colors.orange,
+              ),
+              title: const Text('Restaurant'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.favorite, color: Colors.orange),
+              title: const Text('Favorite'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, RestaurantFavoritesPage.routeName);
+              },
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, SettingPage.routeName);
+              },
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.orange,
+              ),
+              title: const Text('Setting'),
+            ),
+          ],
+        ),
       ),
+      body: _buildList(),
+    );
+  }
+
+  Widget _buildList() {
+    return Consumer<RestaurantListProvider>(
+      builder: (_, provider, __) {
+        switch (provider.state) {
+          case RequestState.loading:
+            return const Loading();
+          case RequestState.loaded:
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              itemCount: provider.result.count,
+              itemBuilder: (_, index) {
+                final restaurant = provider.result.restaurants[index];
+                return CardRestaurant(restaurant: restaurant);
+              },
+            );
+          case RequestState.empty:
+            return const TextMessage(
+              image: 'assets/images/empty-data.png',
+              message: 'Data Kosong',
+            );
+          case RequestState.error:
+            return TextMessage(
+              image: 'assets/images/no-internet.png',
+              message: 'Koneksi Terputus',
+              onPressed: () => provider.fetchAllRestaurant(),
+            );
+          default:
+            return const SizedBox();
+        }
+      },
     );
   }
 

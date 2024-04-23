@@ -5,6 +5,7 @@ import '../provider/preferences_provider.dart';
 import '../provider/scheduling_provider.dart';
 
 class SettingPage extends StatelessWidget {
+  static const routeName = '/setting_page';
   const SettingPage({super.key});
 
   @override
