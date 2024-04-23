@@ -6,7 +6,6 @@ import '../ui/restaurant_detail_page.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
-
   const CardRestaurant({super.key, required this.restaurant});
 
   @override
@@ -30,18 +29,17 @@ class CardRestaurant extends StatelessWidget {
                 elevation: 8,
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(24),
+                        borderRadius: BorderRadius.circular(12),
                         child: SizedBox(
-                          height: 100,
-                          width: 125,
+                          height: 120,
+                          width: double.infinity,
                           child: Image.network(
                             'https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}',
                             fit: BoxFit.cover,
@@ -66,82 +64,73 @@ class CardRestaurant extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              restaurant.name,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall!
-                                  .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18),
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_pin,
-                                  size: 18,
-                                  color: Colors.grey[400],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            restaurant.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
                                 ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  restaurant.city,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(color: const Color(0xFF616161)),
+                          ),
+                          isFavorited
+                              ? IconButton(
+                                  onPressed: () =>
+                                      provider.removeFavorite(restaurant.id),
+                                  color: Colors.pink,
+                                  icon: const Icon(Icons.favorite))
+                              : IconButton(
+                                  onPressed: () =>
+                                      provider.addFavorite(restaurant),
+                                  color: Colors.pink,
+                                  icon: const Icon(Icons.favorite_border),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        size: 18,
-                                        color: Colors.amber,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        '${restaurant.rating}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                                color: const Color(0xFF616161)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                isFavorited
-                                    ? IconButton(
-                                        onPressed: () => provider
-                                            .removeFavorite(restaurant.id),
-                                        color: Colors.pink,
-                                        icon: const Icon(Icons.favorite))
-                                    : IconButton(
-                                        onPressed: () =>
-                                            provider.addFavorite(restaurant),
-                                        color: Colors.pink,
-                                        icon: const Icon(Icons.favorite_border),
-                                      ),
-                              ],
-                            ),
-                          ],
-                        ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            size: 18,
+                            color: Colors.amber,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${restaurant.rating}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: const Color(0xFF616161)),
+                          ),
+                          const SizedBox(width: 20),
+                          Icon(
+                            Icons.location_pin,
+                            size: 18,
+                            color: Colors.grey[400],
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            restaurant.city,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: const Color(0xFF616161)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        restaurant.description,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.w300, fontSize: 12),
                       ),
                     ],
                   ),
