@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-
 import '../common/state_enum.dart';
 import '../provider/database_provider.dart';
 import '../widget/card_restaurant.dart';

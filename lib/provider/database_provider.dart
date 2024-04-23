@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../data/db/database_helper.dart';
 import '../common/state_enum.dart';
 import '../data/model/restaurant_list_model.dart';
