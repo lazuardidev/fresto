@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../data/enum/result_state.dart';
+import '../common/state_enum.dart';
 import '../provider/restaurant_list_provider.dart';
 import '../widget/card_restaurant.dart';
 import '../widget/loading.dart';
@@ -30,9 +30,9 @@ class RestaurantListPage extends StatelessWidget {
     return Consumer<RestaurantListProvider>(
       builder: (_, provider, __) {
         switch (provider.state) {
-          case ResultState.loading:
+          case RequestState.loading:
             return const Loading();
-          case ResultState.hasData:
+          case RequestState.loaded:
             return ListView.builder(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -44,12 +44,12 @@ class RestaurantListPage extends StatelessWidget {
                 return CardRestaurant(restaurant: restaurant);
               },
             );
-          case ResultState.noData:
+          case RequestState.empty:
             return const TextMessage(
               image: 'assets/images/empty-data.png',
               message: 'Data Kosong',
             );
-          case ResultState.error:
+          case RequestState.error:
             return TextMessage(
               image: 'assets/images/no-internet.png',
               message: 'Koneksi Terputus',

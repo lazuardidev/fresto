@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../data/enum/result_state.dart';
+import '../common/state_enum.dart';
 import '../provider/database_provider.dart';
 import '../widget/card_restaurant.dart';
 import '../widget/text_message.dart';
@@ -29,7 +29,7 @@ class RestaurantFavoritesPage extends StatelessWidget {
   Widget _buildList() {
     return Consumer<DatabaseProvider>(
       builder: (_, provider, __) {
-        if (provider.state == ResultState.hasData) {
+        if (provider.state == RequestState.loaded) {
           return ListView.builder(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
