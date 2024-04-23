@@ -27,6 +27,15 @@ class RestaurantDetailPage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Consumer<RestaurantDetailProvider>(
+          builder: (_, provider, __) {
+            return provider.state == RequestState.loading
+                ? const Text('...')
+                : Text(provider.result.restaurant.name);
+          },
+        ),
+      ),
       body: SafeArea(
         child: Consumer<RestaurantDetailProvider>(
           builder: (_, provider, __) {
@@ -50,28 +59,6 @@ class RestaurantDetailPage extends StatelessWidget {
             }
           },
         ),
-      ),
-      floatingActionButton: _backButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-    );
-  }
-
-  Widget _backButton(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 10,
-          ),
-        ],
-      ),
-      child: IconButton(
-        icon: const Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () => Navigator.pop(context),
       ),
     );
   }
