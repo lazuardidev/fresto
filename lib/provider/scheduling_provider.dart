@@ -11,9 +11,7 @@ class SchedulingProvider extends ChangeNotifier {
     _isScheduled = value;
 
     if (_isScheduled) {
-      debugPrint('Scheduling Activated');
       notifyListeners();
-
       return AndroidAlarmManager.periodic(
         const Duration(minutes: 1),
         1,
@@ -23,9 +21,7 @@ class SchedulingProvider extends ChangeNotifier {
         wakeup: true,
       );
     } else {
-      debugPrint('Scheduling Canceled');
       notifyListeners();
-
       return await AndroidAlarmManager.cancel(1);
     }
   }

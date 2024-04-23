@@ -13,7 +13,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pengaturan'),
+        title: const Text('Setting'),
       ),
       body: Consumer<PreferencesProvider>(
         builder: (_, preferences, __) {

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../data/enum/result_state.dart';
 import '../provider/restaurant_list_provider.dart';
 import '../widget/card_restaurant.dart';
-import '../widget/loading_progress.dart';
+import '../widget/loading.dart';
 import '../widget/text_message.dart';
 
 class RestaurantListPage extends StatelessWidget {
@@ -31,7 +31,7 @@ class RestaurantListPage extends StatelessWidget {
       builder: (_, provider, __) {
         switch (provider.state) {
           case ResultState.loading:
-            return const LoadingProgress();
+            return const Loading();
           case ResultState.hasData:
             return ListView.builder(
               padding: const EdgeInsets.symmetric(

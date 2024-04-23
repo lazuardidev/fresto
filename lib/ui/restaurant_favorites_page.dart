@@ -22,7 +22,7 @@ class RestaurantFavoritesPage extends StatelessWidget {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('Favorit'),
+      title: const Text('Favorite'),
     );
   }
 

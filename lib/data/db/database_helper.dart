@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-
 import '../model/restaurant_list_model.dart';
 
 class DatabaseHelper {
@@ -11,12 +10,10 @@ class DatabaseHelper {
   }
 
   factory DatabaseHelper() => _instance ?? DatabaseHelper._internal();
-
   static const String _tblFavorite = 'favorites';
 
   Future<Database> _initializeDb() async {
     final path = await getDatabasesPath();
-
     final db = openDatabase(
       '$path/favorites.db',
       onCreate: (db, _) async {
@@ -33,7 +30,6 @@ class DatabaseHelper {
       },
       version: 1,
     );
-
     return db;
   }
 
@@ -49,19 +45,16 @@ class DatabaseHelper {
   Future<List<Restaurant>> getFavorites() async {
     final db = await database;
     List<Map<String, dynamic>> results = await db!.query(_tblFavorite);
-
     return results.map((item) => Restaurant.fromJson(item)).toList();
   }
 
   Future<Map> getFavoriteById(String id) async {
     final db = await database;
-
     List<Map<String, dynamic>> results = await db!.query(
       _tblFavorite,
       where: 'id = ?',
       whereArgs: [id],
     );
-
     if (results.isNotEmpty) {
       return results.first;
     } else {
@@ -71,7 +64,6 @@ class DatabaseHelper {
 
   Future<void> removeFavorite(String id) async {
     final db = await database;
-
     await db!.delete(
       _tblFavorite,
       where: 'id = ?',

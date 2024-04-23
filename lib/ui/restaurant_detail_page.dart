@@ -8,7 +8,7 @@ import '../data/enum/result_state.dart';
 import '../data/model/restaurant_list_model.dart';
 import '../provider/restaurant_detail_provider.dart';
 import '../widget/content_restaurant.dart';
-import '../widget/loading_progress.dart';
+import '../widget/loading.dart';
 import '../widget/text_message.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
@@ -36,7 +36,7 @@ class RestaurantDetailPage extends StatelessWidget {
           builder: (_, provider, __) {
             switch (provider.state) {
               case ResultState.loading:
-                return const LoadingProgress();
+                return const Loading();
               case ResultState.hasData:
                 return ContentRestaurant(
                   provider: provider,

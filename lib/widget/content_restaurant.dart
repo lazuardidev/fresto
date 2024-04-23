@@ -70,9 +70,8 @@ class ContentRestaurant extends StatelessWidget {
                                 children: [
                                   Text(
                                     restaurant.name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
                                   ),
                                   const SizedBox(height: 8),
                                   Row(
@@ -131,7 +130,7 @@ class ContentRestaurant extends StatelessWidget {
                                           const SnackBar(
                                             duration: Duration(seconds: 1),
                                             content: Text(
-                                              'Dihapuskan dari favorit',
+                                              'Remove from favorite',
                                             ),
                                           ),
                                         );
@@ -158,7 +157,7 @@ class ContentRestaurant extends StatelessWidget {
                                           const SnackBar(
                                             duration: Duration(seconds: 1),
                                             content: Text(
-                                              'Ditambahkan ke favorit',
+                                              'Added to favorite',
                                             ),
                                           ),
                                         );
@@ -173,7 +172,7 @@ class ContentRestaurant extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'Kategori :',
+                          'Category :',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(height: 8),
@@ -208,7 +207,7 @@ class ContentRestaurant extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'Deskripsi :',
+                          'Description :',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(height: 4),
@@ -219,7 +218,7 @@ class ContentRestaurant extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'Menu Makanan :',
+                          'Foods :',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(height: 4),
@@ -241,7 +240,7 @@ class ContentRestaurant extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'Menu Minuman :',
+                          'Drinks :',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(height: 4),

@@ -94,7 +94,7 @@ void main() {
       when(client.get(Uri.parse('${ApiService.baseUrl}/list'))).thenAnswer(
           (_) async => http.Response(getFetchAllRestaurantResponse, 200));
 
-      expect(await apiService.getRestaurantList(), isA<RestaurantListResult>());
+      expect(await apiService.getRestaurants(), isA<RestaurantListResult>());
     });
 
     test('verify json parsing detail restaurant by id', () async {
@@ -105,7 +105,7 @@ void main() {
               (_) async => http.Response(getDetailRestaurantResponse, 200));
 
       expect(
-        await apiService.getRestaurantDetail(id),
+        await apiService.getRestaurantById(id),
         isA<RestaurantDetailResult>(),
       );
     });

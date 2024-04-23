@@ -24,16 +24,16 @@ class _HomePageState extends State<HomePage> {
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = const [
     BottomNavigationBarItem(
-      icon: Icon(Icons.restaurant),
-      label: 'Restoran',
+      icon: Icon(Icons.restaurant_menu),
+      label: 'Restaurant',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite),
-      label: 'Favorit',
+      label: 'Favorite',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.settings),
-      label: 'Pengaturan',
+      label: 'Setting',
     ),
   ];
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../data/api/api_service.dart';
 import '../data/model/restaurant_list_model.dart';
 import '../data/enum/result_state.dart';
@@ -25,7 +24,7 @@ class RestaurantListProvider extends ChangeNotifier {
       _state = ResultState.loading;
       notifyListeners();
 
-      final restaurantList = await apiService.getRestaurantList();
+      final restaurantList = await apiService.getRestaurants();
       if (restaurantList.count == 0 && restaurantList.restaurants.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();

@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -25,17 +23,12 @@ class NotificationHelper {
   ) async {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
-
     const initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
-
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) async {
         final payload = details.payload;
-
-        if (payload != null) debugPrint('notification payload: $payload');
-
         selectNotificationSubject.add(payload ?? 'empty payload');
       },
     );
@@ -61,12 +54,9 @@ class NotificationHelper {
 
     const platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
-
     const titleNotification = "<b>Rekomendasi restoran hari ini</b>";
     final randomIndex = Random().nextInt(restaurantList.restaurants.length);
     final restaurant = restaurantList.restaurants[randomIndex];
-    debugPrint(json.encode(restaurant.toJson()));
-
     await flutterLocalNotificationsPlugin.show(
       0,
       titleNotification,
