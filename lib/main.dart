@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fresto/ui/restaurant_favorites_page.dart';
+import 'package:fresto/ui/favorite_page.dart';
 import 'package:fresto/ui/setting_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -18,7 +18,7 @@ import 'provider/preferences_provider.dart';
 import 'provider/restaurant_list_provider.dart';
 import 'provider/scheduling_provider.dart';
 import 'ui/home_page.dart';
-import 'ui/restaurant_detail_page.dart';
+import 'ui/detail_page.dart';
 import 'utils/background_service.dart';
 import 'utils/notification_helper.dart';
 
@@ -94,10 +94,9 @@ class MyApp extends StatelessWidget {
         initialRoute: HomePage.routeName,
         routes: {
           HomePage.routeName: (_) => const HomePage(),
-          RestaurantFavoritesPage.routeName: (_) =>
-              const RestaurantFavoritesPage(),
+          FavoritePage.routeName: (_) => const FavoritePage(),
           SettingPage.routeName: (_) => const SettingPage(),
-          RestaurantDetailPage.routeName: (context) => RestaurantDetailPage(
+          DetailPage.routeName: (context) => DetailPage(
               restaurant:
                   ModalRoute.of(context)?.settings.arguments as Restaurant),
         },

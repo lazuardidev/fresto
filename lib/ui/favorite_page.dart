@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import '../common/state_enum.dart';
 import '../provider/database_provider.dart';
 import '../widget/card_restaurant.dart';
-import '../widget/text_message.dart';
+import '../widget/response_message.dart';
 
-class RestaurantFavoritesPage extends StatelessWidget {
+class FavoritePage extends StatelessWidget {
   static const routeName = '/restaurant_favorites';
 
-  const RestaurantFavoritesPage({super.key});
+  const FavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class RestaurantFavoritesPage extends StatelessWidget {
             },
           );
         } else {
-          return TextMessage(
+          return ResponseMessage(
             image: 'assets/images/empty-data.png',
             message: provider.message,
           );

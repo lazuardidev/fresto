@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../data/model/restaurant_list_model.dart';
 import '../provider/database_provider.dart';
-import '../ui/restaurant_detail_page.dart';
+import '../ui/detail_page.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
@@ -21,7 +21,7 @@ class CardRestaurant extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  RestaurantDetailPage.routeName,
+                  DetailPage.routeName,
                   arguments: restaurant,
                 );
               },

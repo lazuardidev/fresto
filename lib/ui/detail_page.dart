@@ -7,12 +7,12 @@ import '../data/model/restaurant_list_model.dart';
 import '../provider/restaurant_detail_provider.dart';
 import '../widget/content_restaurant.dart';
 import '../widget/loading.dart';
-import '../widget/text_message.dart';
+import '../widget/response_message.dart';
 
-class RestaurantDetailPage extends StatelessWidget {
+class DetailPage extends StatelessWidget {
   static const routeName = '/restaurant_detail';
   final Restaurant restaurant;
-  const RestaurantDetailPage({super.key, required this.restaurant});
+  const DetailPage({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class RestaurantDetailPage extends StatelessWidget {
                   restaurant: provider.result.restaurant,
                 );
               case RequestState.error:
-                return TextMessage(
+                return ResponseMessage(
                   image: 'assets/images/no-internet.png',
                   message: 'Koneksi Terputus',
                   onPressed: () =>

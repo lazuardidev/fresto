@@ -3,11 +3,11 @@ import 'package:fresto/common/state_enum.dart';
 import 'package:fresto/provider/restaurant_list_provider.dart';
 import 'package:fresto/widget/card_restaurant.dart';
 import 'package:fresto/widget/loading.dart';
-import 'package:fresto/widget/text_message.dart';
+import 'package:fresto/widget/response_message.dart';
 import 'package:provider/provider.dart';
 import '../utils/notification_helper.dart';
-import 'restaurant_detail_page.dart';
-import 'restaurant_favorites_page.dart';
+import 'detail_page.dart';
+import 'favorite_page.dart';
 import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _notificationHelper
-        .configureSelectNotificationSubject(RestaurantDetailPage.routeName);
+        .configureSelectNotificationSubject(DetailPage.routeName);
   }
 
   @override
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               title: const Text('Favorite'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, RestaurantFavoritesPage.routeName);
+                Navigator.pushNamed(context, FavoritePage.routeName);
               },
             ),
             ListTile(
@@ -98,12 +98,12 @@ class _HomePageState extends State<HomePage> {
               },
             );
           case RequestState.empty:
-            return const TextMessage(
+            return const ResponseMessage(
               image: 'assets/images/empty-data.png',
               message: 'Data Kosong',
             );
           case RequestState.error:
-            return TextMessage(
+            return ResponseMessage(
               image: 'assets/images/no-internet.png',
               message: 'Koneksi Terputus',
               onPressed: () => provider.fetchAllRestaurant(),

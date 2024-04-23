@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TextMessage extends StatelessWidget {
+class ResponseMessage extends StatelessWidget {
   final String image;
   final String message;
   final Function()? onPressed;
 
-  const TextMessage({
+  const ResponseMessage({
     super.key,
     required this.image,
     required this.message,
