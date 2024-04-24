@@ -41,7 +41,7 @@ class FavoritePage extends StatelessWidget {
           );
         } else {
           return ResponseMessage(
-            image: 'assets/images/empty-data.png',
+            image: 'assets/images/no-data.png',
             message: provider.message,
           );
         }

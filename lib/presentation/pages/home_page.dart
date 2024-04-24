@@ -99,13 +99,13 @@ class _HomePageState extends State<HomePage> {
             );
           case RequestState.empty:
             return const ResponseMessage(
-              image: 'assets/images/empty-data.png',
-              message: 'Data Kosong',
+              image: 'assets/images/no-data.png',
+              message: 'No Data',
             );
           case RequestState.error:
             return ResponseMessage(
-              image: 'assets/images/no-internet.png',
-              message: 'Koneksi Terputus',
+              image: 'assets/images/error.png',
+              message: 'Something Went Wrong',
               onPressed: () => provider.fetchAllRestaurant(),
             );
           default:

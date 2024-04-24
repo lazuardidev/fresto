@@ -30,7 +30,8 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Consumer<RestaurantDetailNotifier>(
           builder: (_, provider, __) {
-            return provider.state == RequestState.loading
+            return provider.state == RequestState.loading ||
+                    provider.state == RequestState.error
                 ? const Text('...')
                 : Text(provider.result.restaurant.name);
           },
@@ -49,8 +50,8 @@ class DetailPage extends StatelessWidget {
                 );
               case RequestState.error:
                 return ResponseMessage(
-                  image: 'assets/images/no-internet.png',
-                  message: 'Koneksi Terputus',
+                  image: 'assets/images/error.png',
+                  message: 'Something Went Wrong',
                   onPressed: () =>
                       provider.fetchDetailRestaurant(restaurant.id),
                 );
