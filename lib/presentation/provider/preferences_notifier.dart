@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../data/preferences/preferences_helper.dart';
 
-class PreferencesProvider extends ChangeNotifier {
+class PreferencesNotifier extends ChangeNotifier {
   PreferencesHelper preferencesHelper;
 
-  PreferencesProvider({required this.preferencesHelper}) {
+  PreferencesNotifier({required this.preferencesHelper}) {
     _getDailyReminderPreferences();
   }
 

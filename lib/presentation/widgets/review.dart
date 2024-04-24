@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fresto/common/styles.dart';
 import 'package:fresto/data/model/restaurant_detail_model.dart';
-import 'package:fresto/presentation/provider/restaurant_detail_provider.dart';
+import 'package:fresto/presentation/provider/restaurant_detail_notifier.dart';
 
 class Review extends StatelessWidget {
   final RestaurantDetail restaurant;
-  final RestaurantDetailProvider provider;
+  final RestaurantDetailNotifier provider;
 
   const Review({super.key, required this.restaurant, required this.provider});
 

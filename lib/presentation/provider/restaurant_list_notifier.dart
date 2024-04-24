@@ -3,10 +3,10 @@ import '../../data/api/api_service.dart';
 import '../../data/model/restaurant_list_model.dart';
 import '../../common/state_enum.dart';
 
-class RestaurantListProvider extends ChangeNotifier {
+class RestaurantListNotifier extends ChangeNotifier {
   final ApiService apiService;
 
-  RestaurantListProvider({required this.apiService}) {
+  RestaurantListNotifier({required this.apiService}) {
     fetchAllRestaurant();
   }
 

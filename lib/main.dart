@@ -13,10 +13,10 @@ import 'data/api/api_service.dart';
 import 'data/db/database_helper.dart';
 import 'data/model/restaurant_list_model.dart';
 import 'data/preferences/preferences_helper.dart';
-import 'presentation/provider/database_provider.dart';
-import 'presentation/provider/preferences_provider.dart';
-import 'presentation/provider/restaurant_list_provider.dart';
-import 'presentation/provider/scheduling_provider.dart';
+import 'presentation/provider/database_notifier.dart';
+import 'presentation/provider/preferences_notifier.dart';
+import 'presentation/provider/restaurant_list_notifier.dart';
+import 'presentation/provider/scheduling_notifier.dart';
 import 'presentation/pages/home_page.dart';
 import 'presentation/pages/detail_page.dart';
 import 'utils/background_service.dart';
@@ -49,18 +49,18 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
+          create: (_) => DatabaseNotifier(databaseHelper: DatabaseHelper()),
         ),
         ChangeNotifierProvider(
-          create: (_) => RestaurantListProvider(
+          create: (_) => RestaurantListNotifier(
             apiService: ApiService(http.Client()),
           ),
         ),
         ChangeNotifierProvider(
-          create: (_) => SchedulingProvider(),
+          create: (_) => SchedulingNotifier(),
         ),
         ChangeNotifierProvider(
-          create: (context) => PreferencesProvider(
+          create: (context) => PreferencesNotifier(
             preferencesHelper: PreferencesHelper(
               sharedPreferences: SharedPreferences.getInstance(),
             ),

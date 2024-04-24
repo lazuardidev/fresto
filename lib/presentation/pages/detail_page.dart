@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../data/api/api_service.dart';
 import '../../common/state_enum.dart';
 import '../../data/model/restaurant_list_model.dart';
-import '../provider/restaurant_detail_provider.dart';
+import '../provider/restaurant_detail_notifier.dart';
 import '../widgets/detail_restaurant.dart';
 import '../widgets/loading.dart';
 import '../widgets/response_message.dart';
@@ -16,8 +16,8 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RestaurantDetailProvider>(
-      create: (_) => RestaurantDetailProvider(
+    return ChangeNotifierProvider<RestaurantDetailNotifier>(
+      create: (_) => RestaurantDetailNotifier(
         apiService: ApiService(http.Client()),
         restaurantId: restaurant.id,
       ),
@@ -28,7 +28,7 @@ class DetailPage extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Consumer<RestaurantDetailProvider>(
+        title: Consumer<RestaurantDetailNotifier>(
           builder: (_, provider, __) {
             return provider.state == RequestState.loading
                 ? const Text('...')
@@ -37,7 +37,7 @@ class DetailPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Consumer<RestaurantDetailProvider>(
+        child: Consumer<RestaurantDetailNotifier>(
           builder: (_, provider, __) {
             switch (provider.state) {
               case RequestState.loading:

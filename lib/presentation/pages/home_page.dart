@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fresto/common/state_enum.dart';
-import 'package:fresto/presentation/provider/restaurant_list_provider.dart';
+import 'package:fresto/presentation/provider/restaurant_list_notifier.dart';
 import 'package:fresto/presentation/widgets/card_restaurant.dart';
 import 'package:fresto/presentation/widgets/loading.dart';
 import 'package:fresto/presentation/widgets/response_message.dart';
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildList() {
-    return Consumer<RestaurantListProvider>(
+    return Consumer<RestaurantListNotifier>(
       builder: (_, provider, __) {
         switch (provider.state) {
           case RequestState.loading:

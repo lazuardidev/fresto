@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../common/state_enum.dart';
-import '../provider/database_provider.dart';
+import '../provider/database_notifier.dart';
 import '../widgets/card_restaurant.dart';
 import '../widgets/response_message.dart';
 
@@ -25,7 +25,7 @@ class FavoritePage extends StatelessWidget {
   }
 
   Widget _buildList() {
-    return Consumer<DatabaseProvider>(
+    return Consumer<DatabaseNotifier>(
       builder: (_, provider, __) {
         if (provider.state == RequestState.loaded) {
           return ListView.builder(

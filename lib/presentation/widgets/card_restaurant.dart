@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/model/restaurant_list_model.dart';
-import '../provider/database_provider.dart';
+import '../provider/database_notifier.dart';
 import '../pages/detail_page.dart';
 
 class CardRestaurant extends StatelessWidget {
@@ -10,7 +10,7 @@ class CardRestaurant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DatabaseProvider>(
+    return Consumer<DatabaseNotifier>(
       builder: (_, provider, __) {
         return FutureBuilder<bool>(
           future: provider.isFavorited(restaurant.id),

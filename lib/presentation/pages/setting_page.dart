@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/preferences_provider.dart';
-import '../provider/scheduling_provider.dart';
+import '../provider/preferences_notifier.dart';
+import '../provider/scheduling_notifier.dart';
 
 class SettingPage extends StatelessWidget {
   static const routeName = '/setting_page';
@@ -14,9 +14,9 @@ class SettingPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Setting'),
       ),
-      body: Consumer<PreferencesProvider>(
+      body: Consumer<PreferencesNotifier>(
         builder: (_, preferences, __) {
-          return Consumer<SchedulingProvider>(
+          return Consumer<SchedulingNotifier>(
             builder: (_, scheduled, __) {
               void setReminder(bool value) {
                 scheduled.scheduledReminder(value);

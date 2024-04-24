@@ -5,12 +5,12 @@ import 'package:fresto/presentation/widgets/review.dart';
 import 'package:provider/provider.dart';
 import '../../data/model/restaurant_detail_model.dart';
 import '../../data/model/restaurant_list_model.dart';
-import '../provider/database_provider.dart';
-import '../provider/restaurant_detail_provider.dart';
+import '../provider/database_notifier.dart';
+import '../provider/restaurant_detail_notifier.dart';
 
 class ContentRestaurant extends StatelessWidget {
   final RestaurantDetail restaurant;
-  final RestaurantDetailProvider provider;
+  final RestaurantDetailNotifier provider;
 
   const ContentRestaurant({
     super.key,
@@ -23,7 +23,7 @@ class ContentRestaurant extends StatelessWidget {
     final heightImage = MediaQuery.of(context).size.height * 0.4;
     final widthImage = MediaQuery.of(context).size.width;
 
-    return Consumer<DatabaseProvider>(
+    return Consumer<DatabaseNotifier>(
       builder: (_, providerFavorite, __) {
         return FutureBuilder(
           future: providerFavorite.isFavorited(restaurant.id),
