@@ -5,7 +5,7 @@ import '../../data/api/api_service.dart';
 import '../../common/state_enum.dart';
 import '../../data/model/restaurant_list_model.dart';
 import '../provider/restaurant_detail_provider.dart';
-import '../widgets/content_restaurant.dart';
+import '../widgets/detail_restaurant.dart';
 import '../widgets/loading.dart';
 import '../widgets/response_message.dart';
 
