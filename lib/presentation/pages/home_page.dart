@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             return ResponseMessage(
               image: 'assets/images/error.png',
               message: 'Something Went Wrong',
-              onPressed: () => provider.fetchAllRestaurant(),
+              onPressed: () => provider.fetchRestaurants(),
             );
           default:
             return const SizedBox();

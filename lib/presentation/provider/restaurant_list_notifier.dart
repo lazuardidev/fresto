@@ -7,7 +7,7 @@ class RestaurantListNotifier extends ChangeNotifier {
   final ApiService apiService;
 
   RestaurantListNotifier({required this.apiService}) {
-    fetchAllRestaurant();
+    fetchRestaurants();
   }
 
   late RestaurantListResult _restaurantListResult;
@@ -19,7 +19,7 @@ class RestaurantListNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  Future<dynamic> fetchAllRestaurant() async {
+  Future<dynamic> fetchRestaurants() async {
     try {
       _state = RequestState.loading;
       notifyListeners();
@@ -28,18 +28,15 @@ class RestaurantListNotifier extends ChangeNotifier {
       if (restaurantList.count == 0 && restaurantList.restaurants.isEmpty) {
         _state = RequestState.empty;
         notifyListeners();
-
         return _message = 'Empty Data';
       } else {
         _state = RequestState.loaded;
         notifyListeners();
-
         return _restaurantListResult = restaurantList;
       }
     } catch (e) {
       _state = RequestState.error;
       notifyListeners();
-
       return _message = 'Error --> $e';
     }
   }

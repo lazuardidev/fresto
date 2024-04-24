@@ -11,7 +11,7 @@ class RestaurantDetailNotifier extends ChangeNotifier {
     required this.apiService,
     required this.restaurantId,
   }) {
-    fetchDetailRestaurant(restaurantId);
+    fetchRestaurantById(restaurantId);
   }
 
   late RestaurantDetailResult _restaurantDetailResult;
@@ -23,7 +23,7 @@ class RestaurantDetailNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  Future<dynamic> fetchDetailRestaurant(String restaurantId) async {
+  Future<dynamic> fetchRestaurantById(String restaurantId) async {
     try {
       _state = RequestState.loading;
       notifyListeners();

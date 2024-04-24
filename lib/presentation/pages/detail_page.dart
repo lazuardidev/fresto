@@ -52,8 +52,7 @@ class DetailPage extends StatelessWidget {
                 return ResponseMessage(
                   image: 'assets/images/error.png',
                   message: 'Something Went Wrong',
-                  onPressed: () =>
-                      provider.fetchDetailRestaurant(restaurant.id),
+                  onPressed: () => provider.fetchRestaurantById(restaurant.id),
                 );
               default:
                 return const SizedBox();
