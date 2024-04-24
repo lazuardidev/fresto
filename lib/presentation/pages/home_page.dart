@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fresto/common/state_enum.dart';
-import 'package:fresto/provider/restaurant_list_provider.dart';
-import 'package:fresto/widget/card_restaurant.dart';
-import 'package:fresto/widget/loading.dart';
-import 'package:fresto/widget/response_message.dart';
+import 'package:fresto/presentation/provider/restaurant_list_provider.dart';
+import 'package:fresto/presentation/widgets/card_restaurant.dart';
+import 'package:fresto/presentation/widgets/loading.dart';
+import 'package:fresto/presentation/widgets/response_message.dart';
 import 'package:provider/provider.dart';
-import '../utils/notification_helper.dart';
+import '../../utils/notification_helper.dart';
 import 'detail_page.dart';
 import 'favorite_page.dart';
 import 'setting_page.dart';

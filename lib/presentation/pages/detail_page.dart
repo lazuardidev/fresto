@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import '../data/api/api_service.dart';
-import '../common/state_enum.dart';
-import '../data/model/restaurant_list_model.dart';
+import '../../data/api/api_service.dart';
+import '../../common/state_enum.dart';
+import '../../data/model/restaurant_list_model.dart';
 import '../provider/restaurant_detail_provider.dart';
-import '../widget/content_restaurant.dart';
-import '../widget/loading.dart';
-import '../widget/response_message.dart';
+import '../widgets/content_restaurant.dart';
+import '../widgets/loading.dart';
+import '../widgets/response_message.dart';
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/restaurant_detail';

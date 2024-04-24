@@ -2,11 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'package:fresto/data/api/api_service.dart';
 import 'package:fresto/data/model/restaurant_detail_model.dart';
 import 'package:fresto/data/model/restaurant_list_model.dart';
-
 import 'restaurant_api_test.mocks.dart';
 
 @GenerateMocks([http.Client])

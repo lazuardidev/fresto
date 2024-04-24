@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../data/api/api_service.dart';
-import '../data/model/restaurant_detail_model.dart';
-import '../common/state_enum.dart';
+import '../../data/api/api_service.dart';
+import '../../data/model/restaurant_detail_model.dart';
+import '../../common/state_enum.dart';
 
 class RestaurantDetailProvider extends ChangeNotifier {
   final ApiService apiService;
